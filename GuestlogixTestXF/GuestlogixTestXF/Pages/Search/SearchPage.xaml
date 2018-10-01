@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="GuestlogixTestXF.SearchPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20" Spacing="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <BoxView VerticalOptions="Center" BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" />
+                <Label Grid.Column="1" Text="From" FontSize="Medium" />
+                <BoxView Grid.Column="2" VerticalOptions="Center" BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" />
+            </Grid>
+            <StackLayout Orientation="Vertical">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectOriginCommand}" />
+                </StackLayout.GestureRecognizers>
+                <Label HorizontalOptions="Center" FontSize="Large" Text="Origin" IsVisible="{Binding SelectedOriginAirport, Converter={StaticResource ValueToBoolConv}}" />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedOriginAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Large" Text="{Binding SelectedOriginAirport.City}"  />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedOriginAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Medium" Text="{Binding SelectedOriginAirport.Name}"  />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedOriginAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Small" Text="{Binding SelectedOriginAirport.IATA3}"  />
+            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <BoxView VerticalOptions="Center" BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" />
+                <Label Grid.Column="1" Text="To" FontSize="Medium" />
+                <BoxView VerticalOptions="Center" Grid.Column="2" BackgroundColor="{StaticResource PrimaryColor}" HeightRequest="1" />
+            </Grid>
+            <StackLayout Orientation="Vertical">
+                <StackLayout.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding SelectDestinationCommand}" />
+                </StackLayout.GestureRecognizers>
+                <Label HorizontalOptions="Center" FontSize="Large" Text="Destination" IsVisible="{Binding SelectedDestinationAirport, Converter={StaticResource ValueToBoolConv}}" />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedDestinationAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Large" Text="{Binding SelectedDestinationAirport.City}"  />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedDestinationAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Medium" Text="{Binding SelectedDestinationAirport.Name}"  />
+                <Label HorizontalOptions="Center" IsVisible="{Binding SelectedDestinationAirport, Converter={StaticResource NullToBoolConv}}" FontSize="Small" Text="{Binding SelectedDestinationAirport.IATA3}"  />
+            </StackLayout>
+            <Button BackgroundColor="{StaticResource PrimaryColor}" Text="Travel" Command="{Binding SearchCommand}" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

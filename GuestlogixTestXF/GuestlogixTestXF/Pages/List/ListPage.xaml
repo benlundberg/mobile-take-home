@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:GuestlogixTestXF"
+             x:Class="GuestlogixTestXF.ListPage"
+             Title="{Binding Title}">
+    <ContentPage.Content>
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:ExtendedEntry 
+                FocusOnStart="True"
+                TextColor="Black" 
+                Placeholder="Search on: IATA3, Name, City, Country"
+                PlaceholderColor="Black"
+                TextChangedCommand="{Binding TextChangedCommand}" />
+            <ListView Grid.Row="1" ItemsSource="{Binding FilterList}" SelectedItem="{Binding SelectedListItem}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Grid Margin="10">
+                                <Label TextColor="Black" FontSize="Large" Text="{Binding DisplayName}" />
+                            </Grid>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

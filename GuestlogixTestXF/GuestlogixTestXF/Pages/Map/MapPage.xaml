@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="clr-namespace:GuestlogixTestXF"
+             x:Class="GuestlogixTestXF.MapPage">
+    <ContentPage.Content>
+        <Grid RowSpacing="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <controls:ExtendedMap 
+                MapType="Street" 
+                LoadedCommand="{Binding MapLoadedCommand}" />
+            <ListView Grid.Row="1" ItemsSource="{Binding FlightInfoItems}" SelectedItem="{Binding SelectedFlightInfo, Mode=TwoWay}" HasUnevenRows="True">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal">
+                                <Grid Margin="8, 0, 0, 0">
+                                    <BoxView 
+                                        WidthRequest="2"
+                                        HorizontalOptions="Center"
+                                        BackgroundColor="{StaticResource PrimaryColor}" />
+                                    <Frame 
+                                        Margin="0, 10, 0, 10"
+                                        BackgroundColor="{StaticResource PrimaryColor}"
+                                        VerticalOptions="Center"
+                                        CornerRadius="20" />
+                                </Grid>
+                                <StackLayout>
+                                    <Label LineBreakMode="WordWrap">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="{Binding Airport.Name}" />
+                                                <Span Text=", " />
+                                                <Span Text="{Binding Airport.City}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                    <Label Text="{Binding Airport.Country}" />
+                                    <Label LineBreakMode="WordWrap">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="Airline: " />
+                                                <Span Text="{Binding AirlineName}" />
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                    </Label>
+                                </StackLayout>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>
