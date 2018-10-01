@@ -37,6 +37,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <EmbeddedResource Remove="Pages\Route\RoutePage.xaml" />
+  </ItemGroup>
+  <ItemGroup>
     <EmbeddedResource Include="Data\airlines.csv" />
     <EmbeddedResource Include="Data\airports.csv" />
     <EmbeddedResource Include="Data\routes.csv" />
@@ -53,9 +56,6 @@
     <Compile Update="Helpers\TranslateHelper.cs">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Compile>
-    <Compile Update="ViewModels\Home\Master\MenuViewModel.cs">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Update="Resources\Strings.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
@@ -64,19 +64,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Pages\Home\Master\HomeMasterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Home\Master\MasterPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Pages\List\ListPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Map\MapPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Pages\Route\RoutePage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Pages\Search\SearchPage.xaml">
@@ -93,15 +84,6 @@
 
   <ItemGroup>
     <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Home\Master\HomeMasterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Home\Master\MasterPage.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Pages\Route\RoutePage.xaml">
       <Generator>MSBuild:Compile</Generator>
     </None>
     <None Update="Pages\Search\SearchPage.xaml">

@@ -20,7 +20,6 @@ namespace GuestlogixTestXF
 
         private void Initialize()
         {
-            Bootstrapper.CreateTables();
             Bootstrapper.RegisterViews();
         }
 

@@ -1,8 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:controls="clr-namespace:GuestlogixTestXF"
-             x:Class="GuestlogixTestXF.MapPage">
+             x:Class="GuestlogixTestXF.MapPage"
+			 Title="{Binding Title}">
     <ContentPage.Content>
         <Grid RowSpacing="0">
             <Grid.RowDefinitions>
@@ -12,7 +13,13 @@
             <controls:ExtendedMap 
                 MapType="Street" 
                 LoadedCommand="{Binding MapLoadedCommand}" />
-            <ListView Grid.Row="1" ItemsSource="{Binding FlightInfoItems}" SelectedItem="{Binding SelectedFlightInfo, Mode=TwoWay}" HasUnevenRows="True">
+            <ListView 
+				Grid.Row="1"
+				SeparatorVisibility="None"
+				ItemsSource="{Binding FlightInfoItems}" 
+				SelectedItem="{Binding SelectedFlightInfo, 
+				Mode=TwoWay}" 
+				HasUnevenRows="True">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -28,22 +35,23 @@
                                         VerticalOptions="Center"
                                         CornerRadius="20" />
                                 </Grid>
-                                <StackLayout>
-                                    <Label LineBreakMode="WordWrap">
+                                <StackLayout Margin="0, 6, 0, 6">
+									<Label Text="{Binding Airport.IATA3}" FontAttributes="Bold" FontSize="Large" />
+									<Label Text="{Binding Airport.Name}" FontSize="Medium" LineBreakMode="TailTruncation" />
+                                    <Label LineBreakMode="MiddleTruncation" FontSize="Small">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="{Binding Airport.Name}" />
-                                                <Span Text=", " />
                                                 <Span Text="{Binding Airport.City}" />
+                                                <Span Text=", " />
+                                                <Span Text="{Binding Airport.Country}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>
-                                    <Label Text="{Binding Airport.Country}" />
                                     <Label LineBreakMode="WordWrap">
                                         <Label.FormattedText>
                                             <FormattedString>
-                                                <Span Text="Airline: " />
-                                                <Span Text="{Binding AirlineName}" />
+                                                <Span FontSize="Small" FontAttributes="Bold" Text="Airline: " />
+                                                <Span FontSize="Small" Text="{Binding AirlineName}" />
                                             </FormattedString>
                                         </Label.FormattedText>
                                     </Label>

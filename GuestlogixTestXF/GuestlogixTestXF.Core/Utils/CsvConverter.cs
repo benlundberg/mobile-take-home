@@ -46,6 +46,7 @@ namespace GuestlogixTestXF.Core
 
                 // Replace line break with comma seperator
                 propertyValues = propertyValues.Replace("\r\n", ",");
+				propertyValues = propertyValues.Replace("\n", ",");
 
                 // Use regex to trim the csv string
                 var regex = new Regex("(?:^|,)(\\\"(?:[^\\\"]+|\\\"\\\")*\\\"|[^,]*)");

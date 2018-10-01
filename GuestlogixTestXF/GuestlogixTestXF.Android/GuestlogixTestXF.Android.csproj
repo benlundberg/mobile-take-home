@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -23,9 +23,6 @@
   <PropertyGroup>
     <UseShortFileNames>True</UseShortFileNames>
   </PropertyGroup>
-  <PropertyGroup>
-    <IntermediateOutputPath>C:\Projects\Guestlogix</IntermediateOutputPath>
-  </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -35,9 +32,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AndroidLinkMode>None</AndroidLinkMode>
-    <AotAssemblies>true</AotAssemblies>
-    <EnableLLVM>true</EnableLLVM>
-    <BundleAssemblies>false</BundleAssemblies>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -87,13 +81,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper_Droid.cs" />
-    <Compile Include="Helpers\BackgroundHelper_Droid.cs" />
-    <Compile Include="Helpers\LocalFileSystemHelper_Droid.cs" />
     <Compile Include="Helpers\LocalizeHelper_Droid.cs" />
     <Compile Include="MainActivity.cs" />
     <Compile Include="Renderers\BorderlessEntryRenderer_Droid.cs" />
     <Compile Include="Renderers\ExtendedMapRenderer_Droid.cs" />
-    <Compile Include="Renderers\ExtendedWebViewRenderer_Droid.cs" />
     <Compile Include="Resources\Resource.Designer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

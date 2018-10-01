@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-
+using Acr.UserDialogs;
 using Foundation;
 using UIKit;
 
@@ -22,7 +22,9 @@ namespace GuestlogixTestXF.iOS
         //
         public override bool FinishedLaunching(UIApplication app, NSDictionary options)
         {
-            global::Xamarin.Forms.Forms.Init();
+			Xamarin.FormsMaps.Init();
+
+			global::Xamarin.Forms.Forms.Init();
 
             Bootstrapper_iOS.Initialize();
 

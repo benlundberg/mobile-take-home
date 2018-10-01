@@ -44,7 +44,17 @@ namespace GuestlogixTestXF.Android
             DrawRoute();
         }
 
-        private void DrawRoute()
+		protected override MarkerOptions CreateMarker(Pin pin)
+		{
+			var marker = new MarkerOptions();
+			marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
+			marker.SetTitle(pin.Label);
+			marker.SetSnippet(pin.Address);
+			marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.roundedbg));
+			return marker;
+		}
+
+		private void DrawRoute()
         {
             if (routeCoordinates?.Any() != true)
             {
@@ -52,7 +62,8 @@ namespace GuestlogixTestXF.Android
             }
 
             var polylineOptions = new PolylineOptions();
-            polylineOptions.InvokeColor(0x66FF0000);
+
+			polylineOptions.InvokeColor(System.Drawing.Color.Orange.ToArgb());
 
             foreach (var position in routeCoordinates)
             {

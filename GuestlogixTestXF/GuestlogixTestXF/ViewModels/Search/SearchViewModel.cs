@@ -90,14 +90,14 @@ namespace GuestlogixTestXF
             if (SelectedOriginAirport == null)
             {
                 // No origin airport was found
-                ShowAlert("", "");
+                ShowAlert("Please select where you want to travel from", "Missing origin");
                 return;
             }
 
             if (SelectedDestinationAirport == null)
             {
                 // No destination airport was found
-                ShowAlert("", "");
+                ShowAlert("Please select where you want to travel to", "Missing destination");
                 return;
             }
 
@@ -117,7 +117,7 @@ namespace GuestlogixTestXF
                 if (routes?.Any() != true)
                 {
                     HideLoading();
-                    ShowAlert("", "");
+                    ShowAlert("Looks like we couldn't find a route for you", "Could not find a route");
                     return;
                 }
 
@@ -138,13 +138,14 @@ namespace GuestlogixTestXF
 
                 var airportsInRoute = airportManager.GetAirports(distinctCodes);
 
-                var viewModel = new MapViewModel(routes, airportsInRoute);
+				var viewModel = new MapViewModel(routes, airportsInRoute, title: $"{SelectedOriginAirport.City} - {SelectedDestinationAirport.City}");
 
                 await Navigation.PushAsync(ViewContainer.Current.CreatePage(viewModel));
             }
             catch (Exception ex)
             {
                 ex.Print();
+				ShowAlert(ex.Message, "Something terribly went wrong");
             }
             finally
             {

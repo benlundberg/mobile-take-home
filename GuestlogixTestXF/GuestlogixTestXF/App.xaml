@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+<?xml version="1.0" encoding="utf-8" ?>
 <Application xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:GuestlogixTestXF;assembly=GuestlogixTestXF"
@@ -12,10 +12,10 @@
             <local:ValueToBoolConverter x:Key="ValueToBoolConv" />
             
             <!--Colors -->
-            <Color x:Key="DarkPrimaryColor">#1976D2</Color>
-            <Color x:Key="PrimaryColor">#2196F3</Color>
-            <Color x:Key="Accent">#FF4081</Color>
-            <Color x:Key="DarkAccent">#5f5e5e</Color>
+            <Color x:Key="DarkPrimaryColor">#F57C00</Color>
+            <Color x:Key="PrimaryColor">#FF9800</Color>
+            <Color x:Key="Accent">#03A9F4</Color>
+            <Color x:Key="DarkAccent">#1976D2</Color>
             <Color x:Key="GrayDark">#555555</Color>
             <Color x:Key="Gray">#8a8a8a</Color>
             <Color x:Key="GrayLight">#afafaf</Color>

@@ -5,7 +5,6 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
-using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
 using Xamarin.Forms.Maps;
@@ -14,10 +13,11 @@ namespace GuestlogixTestXF
 {
     public class MapViewModel : BaseViewModel
     {
-        public MapViewModel(IEnumerable<Route> routes, IEnumerable<Airport> airports)
+        public MapViewModel(IEnumerable<Route> routes, IEnumerable<Airport> airports, string title)
         {
             this.routes = routes;
             this.airports = airports;
+			this.Title = title;
 
             var airlineManager = ComponentContainer.Current.Resolve<IAirlineManager>();
 
@@ -33,14 +33,14 @@ namespace GuestlogixTestXF
             });
         }
 
-        private void FlightInfoSelected(FlighInfoItemViewModel selectedFlightInfo)
+        private void FlightInfoSelected(string iata3)
         {
             if (selectedFlightInfo == null)
             {
                 return;
             }
 
-            var airport = airports.FirstOrDefault(x => x.IATA3 == selectedFlightInfo.Airport.IATA3);
+            var airport = airports.FirstOrDefault(x => x.IATA3 == iata3);
 
             var lat = Convert.ToDouble(airport.Latitude.Trim(), CultureInfo.InvariantCulture);
             var lon = Convert.ToDouble(airport.Longitude.Trim(), CultureInfo.InvariantCulture);
@@ -80,10 +80,28 @@ namespace GuestlogixTestXF
         public FlighInfoItemViewModel SelectedFlightInfo
         {
             get { return selectedFlightInfo; }
-            set { selectedFlightInfo = value; FlightInfoSelected(selectedFlightInfo); }
+			set 
+			{ 
+				selectedFlightInfo = value;
+
+				if (selectedFlightInfo == null)
+				{
+					return;
+				}
+
+				FlightInfoSelected(selectedFlightInfo.Airport.IATA3);
+
+				selectedFlightInfo = null;
+			}
         }
         
         public ObservableCollection<FlighInfoItemViewModel> FlightInfoItems { get; private set; }
+
+		public string Title
+		{
+			get;
+			set;
+		}
 
         private ExtendedMap map;
 
