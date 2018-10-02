@@ -36,7 +36,7 @@ namespace GuestlogixTestXF
                 return;
             }
 
-            var filter = listItems.Where(x => x.Tags.ToLower().Contains(param.ToString()));
+            var filter = listItems.Where(x => x.Tags.ToLower().Trim().Contains(param.ToString().ToLower()));
 
             if (filter?.Any() == true)
             {

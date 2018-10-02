@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2036
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestlogixTestXF", "GuestlogixTestXF\GuestlogixTestXF\GuestlogixTestXF.csproj", "{571D503A-1D6D-4060-83D4-4AC2E998B99A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestlogixTestXF", "GuestlogixTestXF\GuestlogixTestXF\GuestlogixTestXF.csproj", "{571D503A-1D6D-4060-83D4-4AC2E998B99A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestlogixTestXF.Core", "GuestlogixTestXF\GuestlogixTestXF.Core\GuestlogixTestXF.Core.csproj", "{257DA3F2-FE74-423C-A23C-7E226168D4F9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GuestlogixTestXF.Core", "GuestlogixTestXF\GuestlogixTestXF.Core\GuestlogixTestXF.Core.csproj", "{257DA3F2-FE74-423C-A23C-7E226168D4F9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GuestlogixTestXF.Android", "GuestlogixTestXF\GuestlogixTestXF.Android\GuestlogixTestXF.Android.csproj", "{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}"
 EndProject
@@ -100,8 +100,6 @@ Global
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Debug|iPhone.Build.0 = Debug|Any CPU
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Debug|iPhone.Deploy.0 = Debug|Any CPU
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
-		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
-		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Debug|iPhoneSimulator.Deploy.0 = Debug|Any CPU
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E88DDAB7-6550-4AFE-BE14-2A1F71E4223D}.Release|Any CPU.Deploy.0 = Release|Any CPU

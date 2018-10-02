@@ -38,6 +38,8 @@
 	<string>LaunchScreen</string>
 	<key>CFBundleName</key>
 	<string>GuestlogixTestXF</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1</string>
 	<key>XSAppIconAssets</key>
 	<string>Media.xcassets/AppIcons.appiconset</string>
 	<key>XSLaunchImageAssets</key>

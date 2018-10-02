@@ -1,9 +1,9 @@
 ﻿using GuestlogixTestXF.iOS;
-using GuestlogixTestXF.Controls;
 using System.ComponentModel;
 using UIKit;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.iOS;
+using GuestlogixTestXF;
 
 [assembly: ExportRenderer(typeof(BorderlessEntry), typeof(BorderlessEntryRenderer_iOS))]
 namespace GuestlogixTestXF.iOS

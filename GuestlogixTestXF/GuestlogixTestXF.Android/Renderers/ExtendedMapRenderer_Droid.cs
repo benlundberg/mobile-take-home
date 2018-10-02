@@ -50,7 +50,7 @@ namespace GuestlogixTestXF.Android
 			marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
 			marker.SetTitle(pin.Label);
 			marker.SetSnippet(pin.Address);
-			marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.roundedbg));
+			marker.SetIcon(BitmapDescriptorFactory.FromResource(Resource.Drawable.pin));
 			return marker;
 		}
 
