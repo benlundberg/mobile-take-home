@@ -32,16 +32,70 @@ namespace GuestlogixTestXF.Core
         {
             var routes = GetRoutes();
 
-            var foundRoutes = routes.Where(x => x.Origin == origin && x.Destination == destination);
+            List<Route> foundRoutes = routes.Where(x => x.Origin == origin && x.Destination == destination).ToList();
 
             // Check if there was a route
             if (foundRoutes?.Any() != true)
             {
-                foundRoutes = SearchOptionalRoute(destination, routes.Where(x => x.Origin == origin), routes, new List<string>() { origin });
-            }
+				// No route was found so we try find an alternative one
+				var allPossibleRoutes = GetAllPossibleRoutes(destination, origin, routes);
+
+				// Check if we found an possible route
+				if (allPossibleRoutes?.Any(x => x?.Any() == true) == true)
+				{
+					// Get the quickest route
+					int min = allPossibleRoutes.Min(x => x.Count());
+					foundRoutes = allPossibleRoutes.FirstOrDefault(x => x.Count() == min).ToList();
+
+					// We make a last check to see if the first route is in the list
+					var firstRoute = routes.FirstOrDefault(x => x.Origin == origin && x.Destination == foundRoutes?.FirstOrDefault()?.Origin);
+
+					if (firstRoute != null)
+					{
+						if (foundRoutes?.FirstOrDefault().Origin != firstRoute.Origin &&
+						    foundRoutes?.FirstOrDefault().Destination != firstRoute.Destination)
+						{
+							foundRoutes.Insert(0, firstRoute);
+						}
+					}
+				}
+			}
 
             return foundRoutes;
         }
+
+		public IEnumerable<IEnumerable<Route>> GetAllPossibleRoutes(string finalDestination, string origin, IEnumerable<Route> routes, List<string> exceptRoute = null, List<IEnumerable<Route>> allPossibleRoutes = null)
+		{
+			// List to store all possible routes
+			if (allPossibleRoutes == null)
+			{
+				allPossibleRoutes = new List<IEnumerable<Route>>();
+			}
+
+			// Routes we already have
+			if (exceptRoute == null)
+			{
+				exceptRoute = new List<string>();
+			}
+
+			// Get optional route
+			var foundRoutes = SearchOptionalRoute(finalDestination, routes.Where(x => x.Origin == origin), routes, exceptRoute);
+
+			// If we found one we add it to the list, otherwise we return the routes
+			if (foundRoutes?.Any() == true)
+			{
+				allPossibleRoutes.Add(foundRoutes);
+
+				exceptRoute.Add(foundRoutes.FirstOrDefault()?.Destination);
+
+				// Run this method again
+				var moreRoutes = GetAllPossibleRoutes(finalDestination, origin, routes, exceptRoute, allPossibleRoutes);
+
+				allPossibleRoutes.AddRange(moreRoutes);
+			}
+
+			return allPossibleRoutes;
+		}
 
         /// <summary>
         /// Search and will return a multi-route between origin and final destination.
@@ -50,8 +104,10 @@ namespace GuestlogixTestXF.Core
         {
             List<Route> foundRoutes = new List<Route>();
 
+			// Go through the destinations to for the origin
             foreach (var destination in destinations)
             {
+				// Get destinations where this destination can go, filter away the airports we already looked at
                 var dest = GetDestinations(destination.Destination, routes).Where(x => !exceptRoute.Contains(x.Origin));
 
                 if (dest?.Any() != true)
@@ -59,6 +115,7 @@ namespace GuestlogixTestXF.Core
                     continue;
                 }
 
+				// Check if we have the final destination
                 if (dest.Select(x => x.Destination).Contains(finalDestination))
                 {
                     foundRoutes.Add(destination);
@@ -71,12 +128,20 @@ namespace GuestlogixTestXF.Core
                 }
                 else
                 {
+					// If we haven't found the final destination we try this method again 
                     exceptRoute.Add(destination.Origin);
-                    var route = SearchOptionalRoute(finalDestination, dest, routes, exceptRoute);
+                    
+					var route = SearchOptionalRoute(finalDestination, dest, routes, exceptRoute);
 
-                    if (route?.Any() != true)
+                    if (route?.Any() == true)
                     {
-                        foundRoutes.AddRange(route);
+						foreach (var r in route)
+						{
+							if (foundRoutes?.Any(x => x.Origin == r.Origin && x.Destination == r.Destination) != true)
+							{
+								foundRoutes.Add(r);
+							}
+						}
                         break;
                     }
                 }

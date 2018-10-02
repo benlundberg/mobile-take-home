@@ -33,12 +33,5 @@ namespace GuestlogixTestXF
                 defaultValue: null);
 
         public List<Position> RouteCoordinates { get; set; } = new List<Position>();
-
-        public void DrawRoute()
-        {
-            DrawRouteEvent?.Invoke(this, null);
-        }
-
-        public event EventHandler DrawRouteEvent;
     }
 }

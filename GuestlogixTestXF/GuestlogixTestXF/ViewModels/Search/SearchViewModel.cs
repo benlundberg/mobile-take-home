@@ -47,6 +47,7 @@ namespace GuestlogixTestXF
                 MessagingCenter.Instance.Unsubscribe<ListViewModel, ListItemViewModel>(this, AppConfig.MESSAGE_KEY_ITEM_SELECTED);
             }));
 
+			// Not the best implemenation, but we wait until the listiems is loaded
             while (listItems?.Any() != true)
             {
                 await Task.Delay(TimeSpan.FromSeconds(.5));
@@ -70,7 +71,8 @@ namespace GuestlogixTestXF
                 MessagingCenter.Instance.Unsubscribe<ListViewModel, ListItemViewModel>(this, AppConfig.MESSAGE_KEY_ITEM_SELECTED);
             }));
 
-            while (listItems?.Any() != true)
+			// Not the best implemenation, but we wait until the listiems is loaded
+			while (listItems?.Any() != true)
             {
                 await Task.Delay(TimeSpan.FromSeconds(.5));
             }
@@ -107,7 +109,7 @@ namespace GuestlogixTestXF
 
                 IEnumerable<Route> routes = null;
 
-                ShowLoading("Finding a route");
+                ShowLoading("Finding the best route");
 
                 await Task.Run(() =>
                 {
@@ -117,7 +119,7 @@ namespace GuestlogixTestXF
                 if (routes?.Any() != true)
                 {
                     HideLoading();
-                    ShowAlert("Looks like we couldn't find a route for you", "Could not find a route");
+                    ShowAlert("Looks like we couldn't find a route for your destination", "Could not find a route");
                     return;
                 }
 
@@ -145,7 +147,8 @@ namespace GuestlogixTestXF
             catch (Exception ex)
             {
                 ex.Print();
-				ShowAlert(ex.Message, "Something terribly went wrong");
+
+				ShowAlert("Please try again or contact support", "Something terribly went wrong");
             }
             finally
             {

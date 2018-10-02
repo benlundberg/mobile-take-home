@@ -46,6 +46,7 @@ namespace GuestlogixTestXF.Android
 
 		protected override MarkerOptions CreateMarker(Pin pin)
 		{
+			// Override this method to customize the pin for Android
 			var marker = new MarkerOptions();
 			marker.SetPosition(new LatLng(pin.Position.Latitude, pin.Position.Longitude));
 			marker.SetTitle(pin.Label);

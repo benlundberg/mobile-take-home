@@ -23,6 +23,7 @@ namespace GuestlogixTestXF
 
             this.FlightInfoItems = new ObservableCollection<FlighInfoItemViewModel>();
 
+			// Addid some information for the route
             airports.ToList().ForEach(airport =>
             {
                 FlightInfoItems.Add(new FlighInfoItemViewModel()
@@ -35,6 +36,7 @@ namespace GuestlogixTestXF
 
         private void FlightInfoSelected(string iata3)
         {
+			// When user is clicking on flight info we pan to the airport in the map
             if (selectedFlightInfo == null)
             {
                 return;
@@ -51,6 +53,7 @@ namespace GuestlogixTestXF
         private ICommand mapLoadedCommand;
         public ICommand MapLoadedCommand => mapLoadedCommand ?? (mapLoadedCommand = new Command((param) =>
         {
+			// Command is fired when map is loaded. We add pins and polyline for the route
             if (!(param is ExtendedMap map))
             {
                 return;
@@ -73,7 +76,7 @@ namespace GuestlogixTestXF
                 map.RouteCoordinates.Add(new Position(lat, lon));
             }
 
-            map.MoveToRegion(MapSpan.FromCenterAndRadius(map.RouteCoordinates.FirstOrDefault(), Distance.FromKilometers(100)));
+            map.MoveToRegion(MapSpan.FromCenterAndRadius(map.RouteCoordinates.FirstOrDefault(), Distance.FromKilometers(1000)));
         }));
 
         private FlighInfoItemViewModel selectedFlightInfo;

@@ -18,6 +18,7 @@ namespace GuestlogixTestXF
 
         private void ItemSelected(ListItemViewModel selectedListItem)
         {
+			// When we have selected the item we can send a message that it's selected and pop modal
             Device.BeginInvokeOnMainThread(async () =>
             {
                 // Send message that item is selected
@@ -30,6 +31,7 @@ namespace GuestlogixTestXF
         private ICommand textChangedCommand;
         public ICommand TextChangedCommand => textChangedCommand ?? (textChangedCommand = new Command((param) =>
         {
+			// Simple filtering to display what you search for
             if (string.IsNullOrEmpty((string)param))
             {
                 FilterList?.Clear();
@@ -40,6 +42,7 @@ namespace GuestlogixTestXF
 
             if (filter?.Any() == true)
             {
+				// We only take 10 for better UI and performance
                 FilterList = new ObservableCollection<ListItemViewModel>(filter.Take(10));
             }
         }));
